@@ -46,6 +46,7 @@ class _ItemEditaExcluirWidgetState extends State<ItemEditaExcluirWidget> {
     return Container(
       decoration: BoxDecoration(
         color: FlutterFlowTheme.of(context).secondaryBackground,
+        borderRadius: BorderRadius.circular(8.0),
       ),
       child: Column(
         mainAxisSize: MainAxisSize.max,
@@ -324,14 +325,14 @@ class _ItemEditaExcluirWidgetState extends State<ItemEditaExcluirWidget> {
                 onPressed: () {
                   print('Button pressed ...');
                 },
-                text: 'Button',
+                text: 'Excluir',
                 options: FFButtonOptions(
                   width: 200.0,
                   height: 70.0,
                   padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                   iconPadding:
                       EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                  color: FlutterFlowTheme.of(context).primary,
+                  color: Colors.white,
                   textStyle: GoogleFonts.interTight(
                     color: FlutterFlowTheme.of(context).primaryText,
                     fontWeight: FontWeight.w600,
@@ -348,7 +349,7 @@ class _ItemEditaExcluirWidgetState extends State<ItemEditaExcluirWidget> {
                 onPressed: () {
                   print('Button pressed ...');
                 },
-                text: 'Button',
+                text: 'Salvar',
                 options: FFButtonOptions(
                   width: 200.0,
                   height: 70.0,

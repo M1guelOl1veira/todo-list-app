@@ -35,8 +35,8 @@ class _TelaAutenticacaoWidgetState extends State<TelaAutenticacaoWidget>
       initialIndex: 0,
     )..addListener(() => safeSetState(() {}));
 
-    _model.emailTextController ??= TextEditingController();
-    _model.emailFocusNode ??= FocusNode();
+    _model.usuarioTextController ??= TextEditingController();
+    _model.usuarioFocusNode ??= FocusNode();
 
     _model.senhaTextController ??= TextEditingController();
     _model.senhaFocusNode ??= FocusNode();
@@ -151,7 +151,7 @@ class _TelaAutenticacaoWidgetState extends State<TelaAutenticacaoWidget>
                                 Align(
                                   alignment: AlignmentDirectional(0.0, 0.0),
                                   child: Container(
-                                    height: 255.0,
+                                    height: 284.76,
                                     decoration: BoxDecoration(),
                                     child: Column(
                                       children: [
@@ -223,9 +223,9 @@ class _TelaAutenticacaoWidgetState extends State<TelaAutenticacaoWidget>
                                                     width: double.infinity,
                                                     child: TextFormField(
                                                       controller: _model
-                                                          .emailTextController,
-                                                      focusNode:
-                                                          _model.emailFocusNode,
+                                                          .usuarioTextController,
+                                                      focusNode: _model
+                                                          .usuarioFocusNode,
                                                       autofocus: false,
                                                       obscureText: false,
                                                       decoration:
@@ -260,7 +260,7 @@ class _TelaAutenticacaoWidgetState extends State<TelaAutenticacaoWidget>
                                                                       .fontStyle,
                                                                 ),
                                                         hintText:
-                                                            'Digite seu email',
+                                                            'Digite seu usuário',
                                                         hintStyle:
                                                             GoogleFonts.inter(
                                                           color: FlutterFlowTheme
@@ -370,7 +370,7 @@ class _TelaAutenticacaoWidgetState extends State<TelaAutenticacaoWidget>
                                                                   context)
                                                               .primaryText,
                                                       validator: _model
-                                                          .emailTextControllerValidator
+                                                          .usuarioTextControllerValidator
                                                           .asValidator(context),
                                                     ),
                                                   ),
@@ -382,7 +382,8 @@ class _TelaAutenticacaoWidgetState extends State<TelaAutenticacaoWidget>
                                                       focusNode:
                                                           _model.senhaFocusNode,
                                                       autofocus: false,
-                                                      obscureText: false,
+                                                      obscureText: !_model
+                                                          .senhaVisibility,
                                                       decoration:
                                                           InputDecoration(
                                                         isDense: true,
@@ -491,6 +492,26 @@ class _TelaAutenticacaoWidgetState extends State<TelaAutenticacaoWidget>
                                                                     26.0,
                                                                     24.0,
                                                                     26.0),
+                                                        suffixIcon: InkWell(
+                                                          onTap: () =>
+                                                              safeSetState(
+                                                            () => _model
+                                                                    .senhaVisibility =
+                                                                !_model
+                                                                    .senhaVisibility,
+                                                          ),
+                                                          focusNode: FocusNode(
+                                                              skipTraversal:
+                                                                  true),
+                                                          child: Icon(
+                                                            _model.senhaVisibility
+                                                                ? Icons
+                                                                    .visibility_outlined
+                                                                : Icons
+                                                                    .visibility_off_outlined,
+                                                            size: 22,
+                                                          ),
+                                                        ),
                                                       ),
                                                       style:
                                                           FlutterFlowTheme.of(
@@ -542,24 +563,24 @@ class _TelaAutenticacaoWidgetState extends State<TelaAutenticacaoWidget>
                                 FFButtonWidget(
                                   onPressed: () async {
                                     _model.apiResultLogin =
-                                        await TodoListApiGroup
-                                            .loginForAccessTokenLoginPostCall
-                                            .call(
-                                      username: _model.emailTextController.text,
+                                        await TodoListApiGroup.loginCall.call(
+                                      username:
+                                          _model.usuarioTextController.text,
                                       password: _model.senhaTextController.text,
                                     );
 
                                     if ((_model.apiResultLogin?.succeeded ??
                                         true)) {
-                                      context.pushNamed(
-                                          PaginaInicialWidget.routeName);
+                                      context
+                                          .pushNamed(HomePageWidget.routeName);
                                     } else {
                                       await showDialog(
                                         context: context,
                                         builder: (alertDialogContext) {
                                           return AlertDialog(
                                             title: Text('Error'),
-                                            content: Text('Falha no login.'),
+                                            content: Text(
+                                                'Falha no login. Tente novame'),
                                             actions: [
                                               TextButton(
                                                 onPressed: () => Navigator.pop(

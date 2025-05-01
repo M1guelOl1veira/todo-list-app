@@ -14,25 +14,28 @@ class TelaAutenticacaoModel extends FlutterFlowModel<TelaAutenticacaoWidget> {
   int get tabBarPreviousIndex =>
       tabBarController != null ? tabBarController!.previousIndex : 0;
 
-  // State field(s) for Email widget.
-  FocusNode? emailFocusNode;
-  TextEditingController? emailTextController;
-  String? Function(BuildContext, String?)? emailTextControllerValidator;
+  // State field(s) for Usuario widget.
+  FocusNode? usuarioFocusNode;
+  TextEditingController? usuarioTextController;
+  String? Function(BuildContext, String?)? usuarioTextControllerValidator;
   // State field(s) for Senha widget.
   FocusNode? senhaFocusNode;
   TextEditingController? senhaTextController;
+  late bool senhaVisibility;
   String? Function(BuildContext, String?)? senhaTextControllerValidator;
-  // Stores action output result for [Backend Call - API (login_for_access_token_login_post)] action in BotaoEntrar widget.
+  // Stores action output result for [Backend Call - API (Login)] action in BotaoEntrar widget.
   ApiCallResponse? apiResultLogin;
 
   @override
-  void initState(BuildContext context) {}
+  void initState(BuildContext context) {
+    senhaVisibility = false;
+  }
 
   @override
   void dispose() {
     tabBarController?.dispose();
-    emailFocusNode?.dispose();
-    emailTextController?.dispose();
+    usuarioFocusNode?.dispose();
+    usuarioTextController?.dispose();
 
     senhaFocusNode?.dispose();
     senhaTextController?.dispose();

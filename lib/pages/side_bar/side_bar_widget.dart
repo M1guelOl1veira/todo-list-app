@@ -64,63 +64,35 @@ class _SideBarWidgetState extends State<SideBarWidget> {
                         fit: BoxFit.contain,
                       ),
                     ),
-                    InkWell(
-                      splashColor: Colors.transparent,
-                      focusColor: Colors.transparent,
-                      hoverColor: Colors.transparent,
-                      highlightColor: Colors.transparent,
-                      onTap: () async {
-                        FFAppState().crudOpen =
-                            !(FFAppState().crudOpen ?? true);
-                        safeSetState(() {});
-                      },
-                      child: Icon(
-                        Icons.menu,
-                        color: FlutterFlowTheme.of(context).primaryText,
-                        size: 24.0,
-                      ),
+                    Icon(
+                      Icons.menu,
+                      color: FlutterFlowTheme.of(context).primaryText,
+                      size: 24.0,
                     ),
                   ],
                 ),
               ),
-              InkWell(
-                splashColor: Colors.transparent,
-                focusColor: Colors.transparent,
-                hoverColor: Colors.transparent,
-                highlightColor: Colors.transparent,
-                onTap: () async {
-                  FFAppState().crudOpen = !(FFAppState().crudOpen ?? true);
-                  safeSetState(() {});
-                },
-                child: Container(
-                  width: double.infinity,
-                  height: 100.0,
-                  decoration: BoxDecoration(
-                    color: FlutterFlowTheme.of(context).secondaryBackground,
-                  ),
-                  child: MouseRegion(
-                    opaque: false,
-                    cursor: SystemMouseCursors.click ?? MouseCursor.defer,
-                    child: Padding(
-                      padding: EdgeInsets.all(24.0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Visualizar To-Do List',
-                            style: FlutterFlowTheme.of(context)
-                                .headlineSmall
-                                .override(
-                                  font: GoogleFonts.interTight(
-                                    fontWeight: FlutterFlowTheme.of(context)
-                                        .headlineSmall
-                                        .fontWeight,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .headlineSmall
-                                        .fontStyle,
-                                  ),
-                                  letterSpacing: 0.0,
+              Container(
+                width: double.infinity,
+                height: 100.0,
+                decoration: BoxDecoration(
+                  color: FlutterFlowTheme.of(context).secondaryBackground,
+                ),
+                child: MouseRegion(
+                  opaque: false,
+                  cursor: SystemMouseCursors.click ?? MouseCursor.defer,
+                  child: Padding(
+                    padding: EdgeInsets.all(24.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Visualizar To-Do List',
+                          style: FlutterFlowTheme.of(context)
+                              .headlineSmall
+                              .override(
+                                font: GoogleFonts.interTight(
                                   fontWeight: FlutterFlowTheme.of(context)
                                       .headlineSmall
                                       .fontWeight,
@@ -128,22 +100,29 @@ class _SideBarWidgetState extends State<SideBarWidget> {
                                       .headlineSmall
                                       .fontStyle,
                                 ),
-                          ),
-                          Icon(
-                            Icons.arrow_forward,
-                            color: FlutterFlowTheme.of(context).primaryText,
-                            size: 30.0,
-                          ),
-                        ],
-                      ),
+                                letterSpacing: 0.0,
+                                fontWeight: FlutterFlowTheme.of(context)
+                                    .headlineSmall
+                                    .fontWeight,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .headlineSmall
+                                    .fontStyle,
+                              ),
+                        ),
+                        Icon(
+                          Icons.arrow_forward,
+                          color: FlutterFlowTheme.of(context).primaryText,
+                          size: 30.0,
+                        ),
+                      ],
                     ),
-                    onEnter: ((event) async {
-                      safeSetState(() => _model.mouseRegionHovered = true);
-                    }),
-                    onExit: ((event) async {
-                      safeSetState(() => _model.mouseRegionHovered = false);
-                    }),
                   ),
+                  onEnter: ((event) async {
+                    safeSetState(() => _model.mouseRegionHovered = true);
+                  }),
+                  onExit: ((event) async {
+                    safeSetState(() => _model.mouseRegionHovered = false);
+                  }),
                 ),
               ),
             ],

@@ -20,12 +20,6 @@ class FFAppState extends ChangeNotifier {
     notifyListeners();
   }
 
-  bool _navOpen = false;
-  bool get navOpen => _navOpen;
-  set navOpen(bool value) {
-    _navOpen = value;
-  }
-
   bool _crudOpen = false;
   bool get crudOpen => _crudOpen;
   set crudOpen(bool value) {

@@ -1,13 +1,11 @@
 import '/flutter_flow/flutter_flow_util.dart';
 import '/pages/item_edita_excluir/item_edita_excluir_widget.dart';
-import 'pagina_inicial_widget.dart' show PaginaInicialWidget;
+import 'home_page_widget.dart' show HomePageWidget;
 import 'package:flutter/material.dart';
 
-class PaginaInicialModel extends FlutterFlowModel<PaginaInicialWidget> {
+class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   ///  State fields for stateful widgets in this page.
 
-  // State field(s) for MouseRegion widget.
-  bool mouseRegionHovered = false;
   // Model for ItemEditaExcluir component.
   late ItemEditaExcluirModel itemEditaExcluirModel;
 

@@ -15,52 +15,28 @@ class TodoListApiGroup {
   static String getBaseUrl() =>
       'https://0b8f-2804-d41-d54f-6800-44c-5bc4-93a1-99f0.ngrok-free.app';
   static Map<String, String> headers = {};
-  static FisrtFirstGetCall fisrtFirstGetCall = FisrtFirstGetCall();
-  static ItemsByTodoListIdItemListTodoListIdPostCall
-      itemsByTodoListIdItemListTodoListIdPostCall =
-      ItemsByTodoListIdItemListTodoListIdPostCall();
-  static GetTodoListsTodoListListPostCall getTodoListsTodoListListPostCall =
-      GetTodoListsTodoListListPostCall();
-  static LoginForAccessTokenLoginPostCall loginForAccessTokenLoginPostCall =
-      LoginForAccessTokenLoginPostCall();
+  static GetItemByTodoListIdCall getItemByTodoListIdCall =
+      GetItemByTodoListIdCall();
+  static GetTodoListCall getTodoListCall = GetTodoListCall();
+  static LoginCall loginCall = LoginCall();
+  static GetItemByIdCall getItemByIdCall = GetItemByIdCall();
 }
 
-class FisrtFirstGetCall {
-  Future<ApiCallResponse> call() async {
-    final baseUrl = TodoListApiGroup.getBaseUrl();
-
-    return ApiManager.instance.makeApiCall(
-      callName: 'fisrt_first__get',
-      apiUrl: '${baseUrl}/first/',
-      callType: ApiCallType.GET,
-      headers: {},
-      params: {},
-      returnBody: true,
-      encodeBodyUtf8: false,
-      decodeUtf8: false,
-      cache: false,
-      isStreamingApi: false,
-      alwaysAllowBody: false,
-    );
-  }
-}
-
-class ItemsByTodoListIdItemListTodoListIdPostCall {
+class GetItemByTodoListIdCall {
   Future<ApiCallResponse> call({
     int? todoListId,
   }) async {
     final baseUrl = TodoListApiGroup.getBaseUrl();
 
     return ApiManager.instance.makeApiCall(
-      callName: 'items_by_todo_list_id_item_list__todo_list_id__post',
+      callName: 'Get Item By Todo List Id',
       apiUrl: '${baseUrl}/item/list/${todoListId}',
-      callType: ApiCallType.POST,
+      callType: ApiCallType.GET,
       headers: {
         'Authorization':
-            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJqb2huZG9lIiwiZXhwIjoxNzQ2MTE1MDA3fQ.E2tw60O6YZhZxpjcyep5-OJEneQczNORywlf7YPeHak',
+            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJqb2huZG9lIiwiZXhwIjoxNzgyMTIzMDc5fQ.Mn-fKGPdaKje12QHMj6EzNpHN06dFVU74CZBNjhbkkY',
       },
       params: {},
-      bodyType: BodyType.JSON,
       returnBody: true,
       encodeBodyUtf8: false,
       decodeUtf8: false,
@@ -81,14 +57,14 @@ class ItemsByTodoListIdItemListTodoListIdPostCall {
           .toList();
 }
 
-class GetTodoListsTodoListListPostCall {
+class GetTodoListCall {
   Future<ApiCallResponse> call({
     int? userId,
   }) async {
     final baseUrl = TodoListApiGroup.getBaseUrl();
 
     return ApiManager.instance.makeApiCall(
-      callName: 'get_todo_lists_todo_list_list_post',
+      callName: 'Get Todo List',
       apiUrl: '${baseUrl}/todo-list/list/${userId}',
       callType: ApiCallType.GET,
       headers: {},
@@ -113,7 +89,7 @@ class GetTodoListsTodoListListPostCall {
           .toList();
 }
 
-class LoginForAccessTokenLoginPostCall {
+class LoginCall {
   Future<ApiCallResponse> call({
     String? username = '',
     String? password = '',
@@ -121,7 +97,7 @@ class LoginForAccessTokenLoginPostCall {
     final baseUrl = TodoListApiGroup.getBaseUrl();
 
     return ApiManager.instance.makeApiCall(
-      callName: 'login_for_access_token_login_post',
+      callName: 'Login',
       apiUrl: '${baseUrl}/login',
       callType: ApiCallType.POST,
       headers: {},
@@ -189,6 +165,31 @@ class LoginForAccessTokenLoginPostCall {
         r'''$.todo_list''',
         true,
       ) as List?;
+}
+
+class GetItemByIdCall {
+  Future<ApiCallResponse> call({
+    int? itemId,
+  }) async {
+    final baseUrl = TodoListApiGroup.getBaseUrl();
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'Get Item By Id',
+      apiUrl: '${baseUrl}/item/${itemId}',
+      callType: ApiCallType.GET,
+      headers: {
+        'Authorization':
+            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJqb2huZG9lIiwiZXhwIjoxNzgyMTIzMDc5fQ.Mn-fKGPdaKje12QHMj6EzNpHN06dFVU74CZBNjhbkkY',
+      },
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
 }
 
 /// End TodoListApi Group Code
