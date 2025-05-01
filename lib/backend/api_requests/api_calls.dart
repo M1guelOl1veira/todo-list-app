@@ -20,6 +20,7 @@ class TodoListApiGroup {
   static GetTodoListCall getTodoListCall = GetTodoListCall();
   static LoginCall loginCall = LoginCall();
   static GetItemByIdCall getItemByIdCall = GetItemByIdCall();
+  static AddItemCall addItemCall = AddItemCall();
 }
 
 class GetItemByTodoListIdCall {
@@ -192,6 +193,43 @@ class GetItemByIdCall {
   }
 }
 
+class AddItemCall {
+  Future<ApiCallResponse> call({
+    int? todoListId,
+    String? titulo = '',
+    String? descricao = '',
+    int? userId,
+  }) async {
+    final baseUrl = TodoListApiGroup.getBaseUrl();
+
+    final ffApiRequestBody = '''
+{
+  "user_id": ${userId},
+  "todo_list_id": ${todoListId},
+  "titulo": "${escapeStringForJson(titulo)}",
+  "descricao": "${escapeStringForJson(descricao)}"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'Add Item',
+      apiUrl: '${baseUrl}/item/add',
+      callType: ApiCallType.POST,
+      headers: {
+        'Authorization':
+            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJqb2huZG9lIiwiZXhwIjoxNzgyMTIzMDc5fQ.Mn-fKGPdaKje12QHMj6EzNpHN06dFVU74CZBNjhbkkY',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
 /// End TodoListApi Group Code
 
 class ApiPagingParams {
@@ -236,4 +274,15 @@ String _serializeJson(dynamic jsonVar, [bool isList = false]) {
     }
     return isList ? '[]' : '{}';
   }
+}
+
+String? escapeStringForJson(String? input) {
+  if (input == null) {
+    return null;
+  }
+  return input
+      .replaceAll('\\', '\\\\')
+      .replaceAll('"', '\\"')
+      .replaceAll('\n', '\\n')
+      .replaceAll('\t', '\\t');
 }

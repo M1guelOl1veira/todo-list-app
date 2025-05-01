@@ -94,11 +94,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => TelaAutenticacaoWidget(),
         ),
         FFRoute(
-          name: PaginaInicialCopyWidget.routeName,
-          path: PaginaInicialCopyWidget.routePath,
-          builder: (context, params) => PaginaInicialCopyWidget(),
-        ),
-        FFRoute(
           name: HomePageWidget.routeName,
           path: HomePageWidget.routePath,
           builder: (context, params) => HomePageWidget(),
