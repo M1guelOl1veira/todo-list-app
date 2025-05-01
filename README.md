@@ -1,7 +1,8 @@
 # To-Do List App
 
-A new Flutter project.
+Link para clonar projeto: https://app.flutterflow.io/project/to-do-list-app-lde9v3
 
-## Getting Started
+Usuário para teste - login johndoe e senha = secret
 
-FlutterFlow projects are built to run on the Flutter _stable_ release.
+## Ponto de atenção
+Tive problemas para consumir a API usando localhost, então criei um túnel usando ngrok para expô-la na internet.
